@@ -5,10 +5,6 @@ const Settings = () => {
   return (
     <div>
       <Nav />
-      Страница настроек
-      <Link to="/" className="link">
-        Главная страница
-      </Link>
     </div>
   );
 };
