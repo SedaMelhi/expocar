@@ -9,34 +9,7 @@ const Home = () => {
   return (
     <div>
       <Nav />
-
-      <header className="headerMobile">
-        <nav className="headerMobile__nav">
-          <Link to="/" className="headerMobile__logo">
-            <img className="headerMobile__firstImg" src="images/logo-1.svg" alt="Logo" />
-            <img className="headerMobile__secondImg" src="images/logo-2.svg" alt="Logo" />
-          </Link>
-          <div className="account">
-            <div className="account__notification">
-              <img src="images/notification.svg" alt="Notification icon" />
-              <img
-                className="account__notificationDot"
-                src="images/notification-dot.svg"
-                alt="Notification icon"
-              />
-            </div>
-            <div className="account__inner">
-              <Link to="/" className="account__profilePicture">
-                <img src="images/pp.png" alt="Profile pictire" />
-              </Link>
-            </div>
-            <select className="headerSelect" name="" id=""></select>
-          </div>
-        </nav>
-      </header>
-
-      <Sidebar />
-
+      <Sidebar indexActiveEl={0} />
       <section className="main">
         <div className="product">
           <div className="product__firstCol">
@@ -144,7 +117,7 @@ const Home = () => {
             <div className="checkboxes">
               <div className="checkbox">
                 <input type="checkbox" name="checkbox1" id="checkbox1" />
-                <label for="checkbox1">
+                <label htmlFor="checkbox1">
                   <span>
                     Asset - Fuel Consumed <span className="greyCl">(10)</span>
                   </span>
@@ -161,7 +134,7 @@ const Home = () => {
               </div>
               <div className="checkbox">
                 <input type="checkbox" name="checkbox2" id="checkbox2" />
-                <label for="checkbox2">
+                <label htmlFor="checkbox2">
                   <span>
                     Asset - Odometer <span className="greyCl">(km)</span>
                   </span>
@@ -178,7 +151,7 @@ const Home = () => {
               </div>
               <div className="checkbox">
                 <input type="checkbox" name="checkbox3" id="checkbox3" />
-                <label for="checkbox3">
+                <label htmlFor="checkbox3">
                   <span>
                     Asset - Runtime <span className="greyCl">(km)</span>
                   </span>
@@ -195,7 +168,7 @@ const Home = () => {
               </div>
               <div className="checkbox">
                 <input type="checkbox" name="checkbox4" id="checkbox4" />
-                <label for="checkbox4">
+                <label htmlFor="checkbox4">
                   <span>
                     Asset - Speed <span className="greyCl">(hr)</span>
                   </span>
@@ -212,7 +185,7 @@ const Home = () => {
               </div>
               <div className="checkbox">
                 <input type="checkbox" name="checkbox5" id="checkbox5" />
-                <label for="checkbox5">
+                <label htmlFor="checkbox5">
                   <span>
                     Engine Temperature <span className="greyCl">(deg C)</span>
                   </span>

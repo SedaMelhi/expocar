@@ -148,6 +148,13 @@ body
   padding-top: 80px
   border-right: 1px solid #292929
   background: #101010
+  overflow-y: scroll
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  padding-bottom: 30px
+  &::-webkit-scrollbar 
+    display: none
   @media (max-width: 1200px)
     display: none
   &__link
@@ -159,7 +166,8 @@ body
     &_active
       color: #66f
     &_margin
-      margin-top: 108px
+      margin-bottom: -15px
+      margin-top: 50px
   &__icon
     fill: #fff
     &_active
