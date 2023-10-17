@@ -217,7 +217,7 @@ body
   a
     color: #828282
 
-.checkbox
+
   position: relative
   input
     position: absolute
@@ -349,3 +349,63 @@ body
     padding: 10px
     border-radius: 8px
     border: 1px solid #828282
+
+
+.checkboxEl2
+  position: relative
+  input
+    position: absolute
+    opacity: 0
+    & + label
+      display: inline-block
+      position: relative
+      padding-left: 35px
+      padding-top: 1px
+      color: #828282
+      line-height: 24px
+      a
+        color: #66F
+      &:before
+        position: absolute
+        display: block
+        left: 0
+        top: 0
+        content: ""
+        background: transparent
+        width: 24px
+        height: 24px
+        box-shadow: inset 0 0 0 1px #969FA3
+        border-radius: 4px
+        transition: 200ms ease-in-out all
+      &:after
+        position: absolute
+        display: block
+        top: 50%
+        left: 5px
+        transform: translateY(-50%)
+        content: ""
+        background-image: url('./../../../public/images/checkmark.png')
+        background-repeat: no-repeat
+        width: 18px
+        height: 18px
+        transition: opacity 200ms ease-in-out
+        opacity: 0
+        @media (max-width: 767px)
+          width: 24px
+          height: 24px
+          top: 16px
+    &:hover + label:before
+      cursor: pointer
+    &:hover + label:after
+      cursor: pointer
+    &:focus
+      outline: none
+    &:checked + label
+      &:before
+        background: #66F
+        box-shadow: none
+      &:after
+        opacity: 1
+  label
+    @media (max-width: 767px)
+      padding-top: -8px

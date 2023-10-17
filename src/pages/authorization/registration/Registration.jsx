@@ -19,7 +19,7 @@ const Registration = () => {
   const sendData = (e) => {
     e.preventDefault();
     if (password === password2) {
-      auth({ email, password, full_name })
+      auth('/api/users/', { email, password, full_name })
         .then((res) => {
           if (res.status) {
             dispatch(
