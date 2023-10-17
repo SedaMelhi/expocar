@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom';
+import { useRef, useState } from 'react';
+
 import Nav from '../../components/nav/nav';
 import Sidebar from '../../components/sidebar/sidebar';
 
 import './home.sass';
 
 const Home = () => {
+  const [isOpenForm, setIsOpenForm] = useState(false);
+  const plusBtn = useRef(null);
   //carCard_hidden
   return (
     <div>
       <Nav />
       <Sidebar indexActiveEl={0} />
-      <section className="myCars">
+      <section
+        className="myCars"
+        onClick={(e) => plusBtn.current !== e.target && setIsOpenForm(false)}>
         <div className="myCars__title">My cars</div>
         <div className="selectWrapper">
           <div className="selectContainer">
@@ -27,8 +33,8 @@ const Home = () => {
           </div>
         </div>
         <div className="carCatalog">
-          <div className="carCard">
-            <div className="carCard__addIcon">
+          <div className="carCard" onClick={() => setIsOpenForm(true)} ref={plusBtn}>
+            <div className="carCard__addIcon prevent">
               <img src="images/add-icon.png" alt="Add icon" />
             </div>
           </div>
@@ -132,47 +138,64 @@ const Home = () => {
         </div>
       </section>
 
-      {/* <section className="addCar addCar_hidden">
-        <h1 className="addCar__title">Add your auto</h1>
-        <form action="">
-          <div className="formInner">
-            <div className="inputbox">
-              <label for="brand">Brand</label>
-              <input type="text" placeholder="Khalid Umalatov" name="brand" id="brand" required />
-            </div>
+      {isOpenForm && (
+        <div className="addCar__wrap">
+          <div className="blur" onClick={() => setIsOpenForm(false)}></div>{' '}
+          <section className="addCar">
+            <h1 className="addCar__title">Add your auto</h1>
+            <form action="">
+              <div className="formInner">
+                <div className="inputbox">
+                  <label htmlFor="brand">Brand</label>
+                  <input
+                    type="text"
+                    placeholder="Khalid Umalatov"
+                    name="brand"
+                    id="brand"
+                    required
+                  />
+                </div>
 
-            <div className="inputbox">
-              <label for="model">Model</label>
-              <input
-                type="text"
-                placeholder="emailexample@gmail.com"
-                name="model"
-                id="model"
-                required
-              />
-            </div>
+                <div className="inputbox">
+                  <label htmlFor="model">Model</label>
+                  <input
+                    type="text"
+                    placeholder="emailexample@gmail.com"
+                    name="model"
+                    id="model"
+                    required
+                  />
+                </div>
 
-            <div className="inputbox">
-              <label for="year">Year</label>
-              <input type="text" placeholder="Enter your password" name="year" id="year" required />
-            </div>
+                <div className="inputbox">
+                  <label htmlFor="year">Year</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your password"
+                    name="year"
+                    id="year"
+                    required
+                  />
+                </div>
 
-            <div className="inputbox">
-              <label for="yearsOfOwnership">Years of ownership</label>
-              <input
-                type="text"
-                placeholder="emailexample@gmail.com"
-                name="yearsOfOwnership"
-                id="yearsOfOwnership"
-                required
-              />
-            </div>
-            <button type="submit" className="primaryBtn">
-              Add
-            </button>
-          </div>
-        </form>
-      </section> */}
+                <div className="inputbox">
+                  <label htmlFor="yearsOfOwnership">Years of ownership</label>
+                  <input
+                    type="text"
+                    placeholder="emailexample@gmail.com"
+                    name="yearsOfOwnership"
+                    id="yearsOfOwnership"
+                    required
+                  />
+                </div>
+                <button type="submit" className="primaryBtn">
+                  Add
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      )}
     </div>
   );
 };
