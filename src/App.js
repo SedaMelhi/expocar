@@ -10,24 +10,29 @@ import Chats from './pages/chats/Chats';
 import Car from './pages/car/Car';
 const App = () => {
   const auth = useSelector((state) => state.auth.auth);
-  console.log(auth);
+  const isRemember = useSelector((state) => state.auth.isRemember);
   useEffect(() => {
-    if (auth) {
+    if (isRemember) {
       localStorage.setItem('auth', JSON.stringify(auth));
+    } else {
+      sessionStorage.setItem('auth', JSON.stringify(auth));
     }
-  }, [auth]);
+    if (auth === '') {
+      localStorage.setItem('auth', JSON.stringify(auth));
+      sessionStorage.setItem('auth', JSON.stringify(auth));
+    }
+    localStorage.setItem('isRemember', JSON.stringify(isRemember));
+  }, [auth, isRemember]);
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={auth ? <Home /> : <Navigate to="/registration" />} />
-        <Route path="/car" element={auth ? <Car /> : <Navigate to="/registration" />} />
-        <Route path="/chats" element={auth ? <Chats /> : <Navigate to="/registration" />} />
-        <Route path="/settings" element={auth ? <Settings /> : <Navigate to="/registration" />} />
-        <Route path="/authorization" element={<Authorization />} />
-        <Route path="/authorization/password" element={<Password />} />
-        <Route path="/registration" element={<Registration />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={auth ? <Home /> : <Navigate to="/authorization" />} />
+      <Route path="/car" element={auth ? <Car /> : <Navigate to="/authorization" />} />
+      <Route path="/chats" element={auth ? <Chats /> : <Navigate to="/authorization" />} />
+      <Route path="/settings" element={auth ? <Settings /> : <Navigate to="/authorization" />} />
+      <Route path="/authorization" element={!auth ? <Authorization /> : <Navigate to="/" />} />
+      <Route path="/authorization/password" element={!auth ? <Password /> : <Navigate to="/" />} />
+      <Route path="/registration" element={!auth ? <Registration /> : <Navigate to="/" />} />
+    </Routes>
   );
 };
 

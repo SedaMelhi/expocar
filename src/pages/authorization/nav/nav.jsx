@@ -38,20 +38,14 @@ const Nav = () => {
             <img className="headerMobile__secondImg" src="images/logo-2.svg" alt="Logo" />
           </Link>
           <div className="account">
-            <div className="account__notification">
-              <img src="images/notification.svg" alt="Notification icon" />
-              <img
-                className="account__notificationDot"
-                src="images/notification-dot.svg"
-                alt="Notification icon"
-              />
-            </div>
-            <div className="account__inner">
-              <Link to="/" className="account__profilePicture">
-                <img src="images/pp.png" alt="Profile pictire" />
+            <div className="login">
+              <Link to="/" className="secondaryBtn">
+                Log in
               </Link>
+              <select className="headerSelect" name="" id="">
+                <option value="En">En</option>
+              </select>
             </div>
-            <select className="headerSelect" name="" id=""></select>
           </div>
         </nav>
       </header>

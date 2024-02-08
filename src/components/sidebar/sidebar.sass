@@ -1,0 +1,61 @@
+.sidebar
+  height: 100%
+  width: 272px
+  padding-top: 80px
+  border-right: 1px solid #292929
+  background: #101010
+  @media (max-width: 1200px)
+    display: none
+  &__link
+    display: flex
+    align-items: center
+    gap: 12px
+    padding: 16px 40px
+    font-size: 18px
+    &_active
+      color: #66f
+    &_margin
+      margin-top: 108px
+  &__icon
+    fill: #fff
+    &_active
+      fill: #66f
+
+.sidebarMobile
+  display: none
+  @media (max-width: 1200px)
+    display: block
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0
+    height: 66px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    background: #101010
+    padding: 0 48px
+    border-top: 1px solid rgba(255, 255, 255, 0.10)
+    z-index: 999
+    &__icon
+      fill: #fff
+      &_active
+        fill: #66f
+  @media (max-width: 767px)
+    display: block
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0
+    height: 56px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    background: #101010
+    padding: 0 24px
+    border-top: 1px solid rgba(255, 255, 255, 0.10)
+    z-index: 999
+    &__icon
+      fill: #fff
+      &_active
+        fill: #66f

@@ -3,25 +3,37 @@ import { Link } from 'react-router-dom';
 import Footer from './footer/footer';
 import Nav from './nav/nav';
 
-import './authorisation.sass';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../../api/auth';
-import { setAuth } from '../../redux/authSlice/authSlice';
+import { setAuth, setIsRemember } from '../../redux/authSlice/authSlice';
+
+import './authorisation.sass';
 
 const Authorization = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isRemember = useSelector((state) => state.auth.isRemember);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const sendData = (e) => {
     e.preventDefault();
-    console.log({ email, password });
     auth('/auth-token/', { email, password })
-      .then((res) => console.log(res))
-      .catch((res) => setError(res.response.data.error));
+      .then((res) => {
+        dispatch(setAuth(res.data.token));
+      })
+      .catch((res) => {
+        setError(
+          res.response.data.email && res.response.data.email[0]
+            ? res.response.data.email[0]
+            : 'Unable to log in with provided credentials',
+        );
+      });
   };
+  useEffect(() => {
+    dispatch(setIsRemember(false));
+  }, []);
   return (
     <>
       <Nav />
@@ -62,7 +74,13 @@ const Authorization = () => {
 
               <div className="remember_forgot_row">
                 <div className="checkboxEl2">
-                  <input type="checkbox" name="checkbox" id="checkbox" />
+                  <input
+                    type="checkbox"
+                    name="checkbox"
+                    id="checkbox"
+                    value={isRemember}
+                    onChange={() => dispatch(setIsRemember(!isRemember))}
+                  />
                   <label htmlFor="checkbox">Remember me</label>
                 </div>
                 <Link to="password">Forgot password?</Link>

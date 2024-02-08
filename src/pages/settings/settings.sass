@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')
-
 .alert
+  position: absolute
+  top: 0
+  left: 0
   display: flex
   gap: 16px
   align-items: center
   justify-content: space-between
   padding: 24px 32px
   background: rgba(207, 186, 112, 0.04)
-  margin: 92px 0 80px 272px
+  margin: 0 0 100px 0
   @media (max-width: 1200px)
-    margin: 82px 0 44px
+    width: 100%
+    margin: 0 0 100px 0
   @media (max-width: 767px)
-    margin: 77px 0 49px
+    margin: 0 0 100px 0
   &__text
     display: flex
     align-items: center
@@ -29,7 +31,10 @@
     margin: 0 24px 96px
   &__wrapper
     max-width: 728px
-    margin: 0 auto
+    margin: 120px 0 0 150px
+    padding-bottom: 40px
+    @media (max-width: 1200px)
+      margin: 160px auto 0
   &__userRow
     display: flex
     align-items: center
@@ -68,52 +73,8 @@
     img
       cursor: pointer
 
-.secondaryBtn
-  color: #66F
-  line-height: 24px
-  padding: 12px 24px
-  border-radius: 12px
-  border: 1px solid #66F
-  white-space: nowrap
-  transition: 0.15s
-  &_hidden
-    display: block
-    @media (max-width: 767px)
-      display: none
-  &:hover
-    border: 1px solid #5353E8
-    background: rgba(83, 83, 232, 0.10)
-  &_lg
-    padding: 16px 32px
 
-.formInner
-  display: flex
-  flex-direction: column
-  gap: 24px
 
-.inputbox
-  display: flex
-  flex-direction: column
-  gap: 12px
-  color: #828282
-  label:has(+ input:focus)
-    color: #fff
-  input
-    background-color: #000
-    border: 1px solid #828282
-    border-radius: 12px
-    padding: 16px 24px
-    color: #828282
-    font-size: 18px
-    caret-color: #6666FF
-    &:focus
-      outline: none
-      border: 1px solid #6666FF
-    &:-webkit-autofill
-      -webkit-background-clip: text
-      -webkit-text-fill-color: #828282 !important
-    &::placeholder
-      font-size: 18px
 
 .verification
   display: flex
@@ -150,7 +111,6 @@
       color: #828282
       line-height: 24px
 
-//Toggle-switch
 
 .toggleSwitchContainer
   width: 40px
@@ -190,15 +150,15 @@
   .toggleSwitch input:checked + &:before
     transform: translateX(16px)
 
-.primaryBtn
-  color: #fff
-  font-family: 'Inter', sans-serif
-  font-size: 18px
-  padding: 16px 32px
-  background: #66F
-  border: none
-  border-radius: 12px
-  transition: 0.15s
-  cursor: pointer
-  &:hover
-    background: #5353E8
+
+
+.leftContent
+  position: relative
+  width: 100%
+  @media (max-width: 1200px)
+      padding-left: 0
+
+
+.btn_hidden
+  @media (max-width: 767px)
+    display: none

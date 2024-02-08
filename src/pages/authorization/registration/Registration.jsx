@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import Nav from '../nav/nav';
 
-import './registration.sass';
 import { auth } from '../../../api/auth';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../../../redux/authSlice/authSlice';
+
+import './registration.sass';
 
 const Registration = () => {
   const [full_name, setFull_name] = useState('');
@@ -15,7 +16,7 @@ const Registration = () => {
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const sendData = (e) => {
     e.preventDefault();
     if (password === password2) {
@@ -30,6 +31,8 @@ const Registration = () => {
                 token: res.data.token,
               }),
             );
+            localStorage.setItem('token', res.data.token);
+            navigate('/');
           } else {
             console.log('ошибка!');
           }
@@ -91,7 +94,7 @@ const Registration = () => {
 
               <div className="inputbox">
                 <label htmlFor="confirm_psw" className="flex-sb">
-                  Confirm password{' '}
+                  Confirm password
                   {password !== password2 && (
                     <span style={{ color: 'red', opacity: '.9' }}>Password mismatch!</span>
                   )}
@@ -108,10 +111,10 @@ const Registration = () => {
               </div>
 
               <div className="checkboxEl">
-                <input type="checkbox" name="checkbox" id="checkbox" />
+                <input type="checkbox" name="checkbox" id="checkbox" required />
                 <label htmlFor="checkbox">
                   I accept the <Link to="/">Terms of use</Link> and the
-                  <Link href="/">Privacy policy</Link>
+                  <Link href="/"> Privacy policy</Link>
                 </label>
               </div>
               <button type="submit" className="primaryBtn">

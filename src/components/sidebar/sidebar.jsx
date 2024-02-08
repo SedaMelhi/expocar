@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 import MyCarsSvg from '../../assets/svg/sidebar/MyCarsSvg';
 import AssetsSvg from '../../assets/svg/sidebar/AssetsSvg';
 import BookingSvg from '../../assets/svg/sidebar/BookingSvg';
@@ -10,7 +10,14 @@ import SettingsSvg from '../../assets/svg/sidebar/SettingsSvg';
 import HelpSvg from '../../assets/svg/HelpSvg';
 import SignOutSvg from '../../assets/svg/SignOutSvg';
 
+import './sidebar.sass';
+import { setAuth } from '../../redux/authSlice/authSlice';
+
 const Sidebar = ({ indexActiveEl }) => {
+  const dispatch = useDispatch();
+  const handleSignOut = () => {
+    dispatch(setAuth(''));
+  };
   return (
     <div>
       <div className="sidebar">
@@ -59,10 +66,12 @@ const Sidebar = ({ indexActiveEl }) => {
             <HelpSvg active={indexActiveEl === 7 && true} />
             <span>Help & Supprot</span>
           </Link>
-          <Link to="/authorization" className={`sidebar__link ${indexActiveEl === 6}`}>
-            <SignOutSvg />
-            <span>Sign out</span>
-          </Link>
+          <div onClick={handleSignOut}>
+            <Link to="/authorization" className={`sidebar__link ${indexActiveEl === 6}`}>
+              <SignOutSvg />
+              <span>Sign out</span>
+            </Link>
+          </div>
         </div>
       </div>
 
