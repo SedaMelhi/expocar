@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import './nav.sass';
+import { useSelector } from 'react-redux';
 
 const Nav = () => {
+  const name = useSelector((state) => state.auth.name);
   return (
     <>
       <header className="header">
@@ -36,7 +38,7 @@ const Nav = () => {
               <img src="images/pp.png" alt="Profile pictire" />
             </Link>
             <div className="account__userInfo">
-              <div className="account__userName">Magomed Aliev</div>
+              <div className="account__userName">{name}</div>
               <div className="account__userLicenseId">Driving license ID: 11222343086</div>
             </div>
           </div>

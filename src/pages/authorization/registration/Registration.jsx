@@ -19,7 +19,7 @@ const Registration = () => {
   const navigate = useNavigate();
   const sendData = (e) => {
     e.preventDefault();
-    if (password === password2) {
+    if (password === password2 && password.length > 0 && error === null) {
       auth('/api/users/', { email, password, full_name })
         .then((res) => {
           if (res.status) {
@@ -40,7 +40,19 @@ const Registration = () => {
         .catch((res) => setError(res.response.data.error));
     }
   };
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
 
+  const handleChange = (event) => {
+    if (!isValidEmail(event.target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+
+    setEmail(event.target.value);
+  };
   return (
     <>
       <Nav />
@@ -74,7 +86,7 @@ const Registration = () => {
                   name="email"
                   id="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleChange}
                   required
                 />
               </div>

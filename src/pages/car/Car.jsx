@@ -4,8 +4,21 @@ import Nav from '../../components/nav/nav';
 import Sidebar from '../../components/sidebar/sidebar';
 
 import './car.sass';
+import { useEffect, useState } from 'react';
+import { car } from '../../api/car';
 
 const Car = () => {
+  const [error, setError] = useState('');
+  useEffect(() => {
+    car('/api/car')
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        setError('error');
+      });
+  }, []);
+  console.log(1);
   return (
     <div>
       <Nav />

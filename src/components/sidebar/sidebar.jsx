@@ -11,12 +11,14 @@ import HelpSvg from '../../assets/svg/HelpSvg';
 import SignOutSvg from '../../assets/svg/SignOutSvg';
 
 import './sidebar.sass';
-import { setAuth } from '../../redux/authSlice/authSlice';
+import { setAuth, setIsRemember, setName } from '../../redux/authSlice/authSlice';
 
 const Sidebar = ({ indexActiveEl }) => {
   const dispatch = useDispatch();
   const handleSignOut = () => {
     dispatch(setAuth(''));
+    dispatch(setIsRemember(false));
+    dispatch(setName('User'));
   };
   return (
     <div>

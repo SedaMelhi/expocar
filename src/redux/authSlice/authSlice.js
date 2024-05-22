@@ -12,6 +12,7 @@ export const authSlice = createSlice({
     isRemember: localStorage.getItem('isRemember')
       ? JSON.parse(localStorage.getItem('isRemember'))
       : false,
+    name: 'User',
   },
   reducers: {
     setAuth(state, { payload }) {
@@ -20,10 +21,13 @@ export const authSlice = createSlice({
     setIsRemember(state, { payload }) {
       state.isRemember = payload;
     },
+    setName(state, { payload }) {
+      state.name = payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setAuth, setIsRemember } = authSlice.actions;
+export const { setAuth, setIsRemember, setName } = authSlice.actions;
 
 export default authSlice.reducer;

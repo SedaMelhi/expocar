@@ -8,6 +8,9 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Chats from './pages/chats/Chats';
 import Car from './pages/car/Car';
+
+//Нужен токен, чтобы при переходе на страницу получать с сервера данные пользователя
+
 const App = () => {
   const auth = useSelector((state) => state.auth.auth);
   const isRemember = useSelector((state) => state.auth.isRemember);

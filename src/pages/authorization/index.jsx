@@ -6,7 +6,7 @@ import Nav from './nav/nav';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../../api/auth';
-import { setAuth, setIsRemember } from '../../redux/authSlice/authSlice';
+import { setAuth, setIsRemember, setName } from '../../redux/authSlice/authSlice';
 
 import './authorisation.sass';
 
@@ -21,7 +21,9 @@ const Authorization = () => {
     e.preventDefault();
     auth('/auth-token/', { email, password })
       .then((res) => {
+        console.log(res);
         dispatch(setAuth(res.data.token));
+        dispatch(setName(res.data.full_name));
       })
       .catch((res) => {
         setError(
