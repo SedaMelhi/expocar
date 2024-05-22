@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import Nav from '../../components/nav/nav';
 import Sidebar from '../../components/sidebar/sidebar';
+import { useState } from 'react';
 
 import './settings.sass';
 
 const Settings = () => {
   const pathImage = 'images/pp.png';
+
+  const [user, setUser] = useState({
+    name: useSelector((state) => state.auth.name),
+    email: '',
+    location: '',
+    password: '',
+    confirmPassword: '',
+  });
   return (
     <div>
       <Nav />
@@ -47,7 +56,19 @@ const Settings = () => {
                 <div className="formInner">
                   <div className="inputbox">
                     <label htmlFor="name">Full name (as in passport)</label>
-                    <input type="text" placeholder="Magomed Aliev" name="name" id="name" required />
+                    <input
+                      type="text"
+                      placeholder="Magomed Aliev"
+                      name="name"
+                      id="name"
+                      value={user.name}
+                      onChange={(e) =>
+                        setUser((prev) => {
+                          return { ...prev, name: e.target.value };
+                        })
+                      }
+                      required
+                    />
                   </div>
 
                   <div className="inputbox">
@@ -57,6 +78,12 @@ const Settings = () => {
                       placeholder="emailexample@gmail.com"
                       name="email"
                       id="email"
+                      value={user.email}
+                      onChange={(e) =>
+                        setUser((prev) => {
+                          return { ...prev, email: e.target.value };
+                        })
+                      }
                       required
                     />
                   </div>
@@ -68,6 +95,12 @@ const Settings = () => {
                       placeholder="Enter your address"
                       name="address"
                       id="address"
+                      value={user.location}
+                      onChange={(e) =>
+                        setUser((prev) => {
+                          return { ...prev, location: e.target.value };
+                        })
+                      }
                       required
                     />
                   </div>
@@ -79,6 +112,12 @@ const Settings = () => {
                       placeholder="Enter your password"
                       name="psw"
                       id="psw"
+                      value={user.password}
+                      onChange={(e) =>
+                        setUser((prev) => {
+                          return { ...prev, password: e.target.value };
+                        })
+                      }
                       required
                     />
                   </div>
@@ -90,6 +129,12 @@ const Settings = () => {
                       placeholder="Enter your password"
                       name="confirm_psw"
                       id="confirm_psw"
+                      value={user.confirmPassword}
+                      onChange={(e) =>
+                        setUser((prev) => {
+                          return { ...prev, email: e.target.confirmPassword };
+                        })
+                      }
                       required
                     />
                   </div>
